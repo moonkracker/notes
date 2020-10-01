@@ -46,8 +46,14 @@
  сред разработки (IDE) **PyCharm** и **WebStorm**.
 
 ### 2.2 Интерфейс пользователя
-
-![](https://sun9-65.userapi.com/c625527/v625527720/5061e/d5lEW_5095c.jpg)
+#### 2.2.1 Окно создания аккаунта
+![](https://github.com/moonkracker/notes/blob/master/mockups/Authorization%20.png)
+#### 2.2.2 Окно авторизации
+![](https://github.com/moonkracker/notes/blob/master/mockups/Login.png)
+#### 2.2.3 Окно профиля
+![](https://github.com/moonkracker/notes/blob/master/mockups/profile.png)
+#### 2.2.4 Основное рабочее окно
+![](https://github.com/moonkracker/notes/blob/master/mockups/main%20window.png)
 
 ### 2.3 Характеристики пользователей
 Целевая аудитория приложения - люди любого возраста, интересующиеся систематизацией своего бюджета.
