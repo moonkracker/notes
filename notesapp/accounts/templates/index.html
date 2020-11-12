@@ -1,0 +1,98 @@
+{% extends 'registration_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Notekeeper {% endblock %}
+<!-- {% load humanize %} -->
+{% block content %}
+<div class="container-fluid" style="margin-top: 20px; margin-bottom: 50px;">
+    <div class="row text-center">
+        <div class="col">
+            <h1>Возможности</h1>
+            <hr style="width: 100px; border: 0.5px solid; margin-bottom: 50px;">
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fas fa-sticky-note" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Сохранение</h4>
+            <p>
+                Сохранять заметки ... И это все, что нам нужно. Проще говоря, у Notes есть все инструменты (только необходимые 😉), которые вам нужны в одном месте
+            </p>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fas fa-lock" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Шифрование</h4>
+            <p>
+                Мы очень серьезно относимся к безопасности. Все ваши заметки зашифрованы
+            </p>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fas fa-share-square" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Делиться</h4>
+            <p>
+                Легко делитесь своими заметками друг с другом, не делясь учетными данными
+            </p>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fas fa-copy" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Копирование</h4>
+            <p>
+                Копировать текст из заметок очень просто. Просто выделите текст, и он будет скопирован в буфер обмена
+            </p>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fas fa-edit" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Изменение</h4>
+            <p>
+                Notes поддерживает Markdown. Не волнуйтесь, если вы не знаете Markdown, мы также добавили физическую панель инструментов ✌
+            </p>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fab fa-searchengin" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Поиск</h4>
+            <p>
+                Поиск заметок быстро используя ваши заголовки заметок или же тэги заметок
+            </p>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fas fa-sort" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Сортировка</h4>
+            <p>
+                Сортировка заметок по дате или же заголовку(по возрастанию или по убыванию)
+            </p>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-3">
+            <i class="fas fa-thumbtack" style="font-size: 50px; margin-bottom: 5%;"></i>
+            <h4>Быстрый доступ</h4>
+            <p>
+                Более быстрый доступ к недавно измененным заметкам на боковой панели
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-light" style="margin-top: 20px;">
+    <div class="row text-center">
+        <div class="col" style="margin-top: 20px;">
+            <h1>Создатели</h1>
+            <hr style="width: 100px; border: 0.5px solid; margin-bottom: 50px;">
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col">
+            <p>
+                <strong class="footer__title">Notes</strong> от <a class="link" href="https://github.com/RomanGovor"
+                    target="_blank">Говор Роман</a> и
+                <a class="link" href="https://github.com/moonkracker" target="_blank">Кононович Максим</a> для ТРиТПо в 2020.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

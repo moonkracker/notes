@@ -1,0 +1,171 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: black;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Open Sans";
+  font-size: 16px;
+  color: White;
+  font-weight: 600;
+}
+
+a {
+  color: #BBB;
+}
+
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0; bottom: 0;
+  z-index: -1;
+
+  display: block;
+  background-color: black;
+  background-image: url('http://ultraimg.com/images/Ho6hQWs.jpg');
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  justify-content: center;
+  text-align: center;
+
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+
+
+.content {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  width: 540px;
+  height: 540px;
+  background-color: rgba(10, 10, 10, 0.5);
+  margin: auto auto;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,1);
+}
+
+.context .title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
+    padding-bottom: 20px;
+  }
+
+.context  input {
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: "Open Sans";
+    margin: 10px 0px;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+.context label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 5px;
+    margin-right: 10px;
+    top: 5px;
+}
+    label:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      background-color: #aaa;
+      box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    }
+
+.context  button {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin: 20px 0px;
+    background-color: #66A756;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .social {
+    width: 24vw;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+    .social:before, .social:after {
+      content: '';
+      display: block;
+      width: 500px;
+      position: absolute;
+      top: 0.9em;
+      border-top: 1px solid white;
+    }
+    .social:before {
+      right: 75%;
+    }
+
+    .social:after {
+      left: 75%;
+    }
+
+  .buttons {
+    width: 100%;
+    margin: 30px 0;
+  }
+    .buttons button {
+      float: left;
+      width: 30%;
+      margin: 0 1.5%;
+    }
+      .buttons button i {
+        padding-right: 7px;
+      }
+
+      .buttons button.facebook {
+        background-color: #4464B2;
+      }
+
+      .buttons button.vkontakte {
+        background-color: rgb(74,118,168);
+      }
+
+      .buttons button.google {
+        background-color: #DA4735;
+      }
+
+      .buttons:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+  .already {
+    text-align: center;
+    font-size: 0.9rem;
+  }
