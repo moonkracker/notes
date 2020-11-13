@@ -1,5 +1,6 @@
 import os
 from decouple import config
+import random
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -165,18 +166,24 @@ SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '117448292603-d2roi9p7s5bte64uvrq3pmlp8jgsepp6.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'I32dJ9YBOA40bSAAPJe1238L'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']  # add this
-SOCIAL_AUTH_GOOGLE_OAUTH2_PROFILE_EXTRA_PARAMS = {       # add this
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']  
+SOCIAL_AUTH_GOOGLE_OAUTH2_PROFILE_EXTRA_PARAMS = {       
     'fields': 'id, name, email, picture.type(large), link'
 }
-SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = [                 # add this
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = [                
     ('name', 'name'),
     ('email', 'email'),
     ('picture', 'picture'),
-    ('link', 'profile_url'),
+    ('link', 'profile'),
 ]
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = '7660862'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'MfoDNqOhoO4cCPrfCkTr'
 
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+VK_EXTRA_DATA = ['picture']
+
+
+# Если имя не удалось получить, то можно его сгенерировать
+def SOCIAL_AUTH_DEFAULT_USERNAME(): return random.choice(
+    ['Darth_Vader', 'Obi-Wan_Kenobi', 'R2-D2', 'C-3PO', 'Yoda'])

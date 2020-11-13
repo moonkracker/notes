@@ -1,28 +1,174 @@
 {% extends 'base2.html' %}
-{% block title %} Home {% endblock %}
+{% block titlee %}Профиль {{ user.username }}{% endblock %}
+
 {% block content %}
-<div class="row">
-    <div class="col-sm-12 mb-3">
-        <h4 class="text-center">Welcome {{ user.username }}</h4>
-    </div>
-    <!-- Add from here -->
-    {% for ass in backends.associated %}
-    {% if ass.provider == 'facebook' %}
-    <div class="col-md-6 text-center">
-        <img src="{{ass.extra_data.picture.data.url}}" alt="" width="150" height="150" style="border-radius: 50%">
-    </div>
-    <div class="col-md-6 social-container my-2">
-        <p> Signed in via: {{ ass.provider }} </p>
-        <p> Name: {{ ass.extra_data.name }} </p>
-        <p> Provider url: <a href="{{ass.extra_data.profile_url}}">link</a></p>
-    </div>
-    {% endif %}
-    {% endfor %}
-    <div class="col-sm-12 mt-2 text-center">
-        <button class="btn btn-danger">
-            <a href="{% url 'logout' %}">Logout</a>
-        </button>
-    </div>
-    <!-- End here -->
-</div>
+
+<body>
+    <main class="main">
+        <div class="main__content">
+            <div class="box info">
+                {% for ass in backends.associated %}
+                
+                {% if ass.provider == 'google-oauth2' %}
+                <div class="avatar__content">
+                    <img class="avatar__img" src="{{ass.extra_data.picture}}" alt="">
+                </div>
+                {% if ass.provider %}{% else %}<button class="button is-warning is-light button-edit"
+                    style="min-width: 150px;" href="{% url 'change_password' %}">Сменить пароль</button>{% endif %}
+                <div class="info__container">
+                    <h4 class="info__name info__item">Имя</h4>
+                    <p class="info__item name_pers">{{ ass.extra_data.name }}</p>
+                    <h4 class="info__email info__item">E-mail</h4>
+                    <p class="info__item"><a class="email_pers">{{ user.email }}</a></p>
+                </div>
+                {% endif %}
+                
+                {% if ass.provider == 'facebook' %}
+                <div class="avatar__content">
+                    <img class="avatar__img" src="{{ass.extra_data.picture.data.url}}" alt="">
+                </div>
+                <div class="info__container">
+                    <h4 class="info__name info__item">Имя</h4>
+                    <p class="info__item name_pers">{{ ass.extra_data.name }}</p>
+                    <h4 class="info__email info__item">E-mail</h4>
+                    <p class="info__item"><a class="email_pers" href="{{ass.extra_data.profile_url}}">{{ user.email }}</a></p>
+                </div>
+                {% endif %}
+
+                {% if ass.provider == 'vk-oauth2' %}
+                <div class="avatar__content">
+                    <img class="avatar__img" src="" alt="">
+                </div>
+                <div class="info__container">
+                    <h4 class="info__name info__item">Имя</h4>
+                    <p class="info__item name_pers">{{ user.first_name }} {{user.last_name}}</p>
+                    <h4 class="info__email info__item">E-mail</h4>
+                    <p class="info__item"><a class="email_pers" href="https://vk.com/id{{ass.extra_data.id}}">{{ user.email }}</a></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="box bio">Bio:<p class="bio__container" contenteditable="true">blank page</p>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong class="footer__title">Notes</strong> от <a class="link" href="https://github.com/RomanGovor"
+                    target="_blank">Говора Романа</a> и
+                <a class="link" href="https://github.com/moonkracker" target="_blank">Кононовича Максима</a> для ТРиТПО
+                в 2020.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function getBio() {
+            const info = JSON.parse(localStorage.getItem("personalInfo"));
+            return info === null ? [] : info;
+        }
+
+        function setBio(array) {
+            localStorage.setItem("personalInfo", JSON.stringify(array));            
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const bioContainer = document.querySelector(".bio__container");
+            const namePers = document.querySelector(".name_pers").textContent;
+            const emailPers = document.querySelector(".email_pers").textContent;
+
+
+
+            let bio = [], bioLength = 0;
+            let index = -1;
+
+            bio = getBio();
+            bioLength = bio.length;
+            for(let i = 0;i < bio.length; i++) {
+                if(bio[i].name === namePers && bio[i].email === emailPers) {
+                    bioContainer.textContent = bio[i].bio;
+                    break;
+                }
+            }
+
+            bioContainer.addEventListener("focus",() => {
+                bio = getBio();
+                bioLength = bio.length;
+                for(let i = 0;i < bio.length; i++) {
+                    if(bio[i].name === namePers && bio[i].email === emailPers) {
+                        index = i;
+                        break;
+                    }
+                }
+                if(index === -1) {
+                    const obj = {
+                        name: namePers,
+                        email: emailPers,
+                        bio: "blank page"
+                    }
+                    bio.push(obj);
+                    index = bioLength;
+                    bioLength++;
+                }
+
+                window.addEventListener("unload", () => {
+                    bio[index].name = namePers;
+                    bio[index].email = emailPers;
+                    bio[index].bio = bioContainer.textContent;
+
+                    setBio(bio);
+                })
+            });
+
+            bioContainer.addEventListener("blur",() => {
+                bio[index].name = namePers;
+                bio[index].email = emailPers;
+                bio[index].bio = bioContainer.textContent;
+
+                setBio(bio);
+            });
+
+            const p = document.querySelector(".p-5");
+            p.classList.remove("p-5")
+            p.style.paddingTop = "3rem";
+
+            const navbarImg = document.querySelector(".navbar-item img");
+            console.log(navbarImg);
+            navbarImg.style.maxHeight = "none";
+
+            const cards = document.querySelectorAll(".card");
+            cards.forEach(elem => {
+                elem.style.background = "none";
+                elem.style.border = "none";
+                elem.style.boxShadow = "none";
+            });
+
+            const containerFluid = document.querySelector(".container-fluid");
+            containerFluid.style.padding = "0";
+
+            function delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            delay(1000).then(() => {
+                const avatarImg = document.querySelectorAll(".avatar__img");
+                console.log(document.querySelector(".avatar__content").firstChild.nextSibling.currentSrc.length);
+
+                if (document.querySelector(".avatar__content").firstChild.nextSibling.currentSrc.length === 0) {
+                    const avatarContent = document.querySelector(".avatar__content");
+                    console.log(avatarContent);
+                    avatarContent.style.background = `url("../static/img/default_avatar.svg")`;
+                    avatarContent.style.backgroundSize = "17vw 33vh";
+                }
+            });
+
+            const navbarBrand = document.querySelector(".navbar-brand");
+            navbarBrand.style.paddingTop = "1vh";
+
+            const navbar = document.querySelector(".navbar");
+            navbar.style.height = "56px";
+        }); 
+    </script>
+</body>
 {% endblock %}}

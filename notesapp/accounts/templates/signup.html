@@ -3,32 +3,49 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
+<div class="container content">
     <div class="row">
         {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
                 <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 col-sm-12 col-xs-12 alert alert-danger">{{ error }}</div>
             {% endfor %}
         {% endif %}
-        <div class="col-lg-6 col-md-6 offset-md-3">
-            <h1>Sign Up</h1>
+        <div style="display: flex; justify-content: center;">
+            <h1 class="title">Регистрация</h1>
             <hr>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-md-6 offset-md-3">
-                <form method="post" class="form" action="{% url 'signup' %}">
-                    {% csrf_token %}
-                    <div class="row">
-                        {% for field in form %}
-                        <div class="form-group col-lg-6 col-md-6">
-                            {{ field | as_crispy_field }}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <button class="btn btn-success" type="submit">Sign Up</button>
-                </form>
-        </div>
+        <form method="post" class="form" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <div class="row">
+                {% for field in form %}
+                <div class="form-group col-lg-6 col-md-6">
+                   {{ field | as_crispy_field }}
+                </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-success btn-sign" type="submit" style="max-width: none;">Регистрация</button>
+        </form>
     </div>
 </div>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const smalls = document.querySelectorAll("small");
+    smalls.forEach(elem => elem.style.display = 'none')
+
+    const name = document.querySelector('.requiredField');
+    name.addEventListener('mouseover',() => {
+        
+        
+    })
+}) 
+</script>
 {% endblock %}
+
+<style>
+    .btn-sign {
+        text-align: center;
+         width: 150px;
+    }
+</style>

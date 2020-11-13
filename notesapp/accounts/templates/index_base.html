@@ -1,7 +1,8 @@
 <!doctype html>
 {% load static %}
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,19 +14,22 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
-  </head>
-  <body style="font-family: 'Montserrat', sans-serif;">
+</head>
+
+<body style="font-family: 'Montserrat', sans-serif;">
     {% include 'navbar.html' %}
     <div style="margin-top: 2%">
         {% block content %}
         {% endblock %}
     </div>
+    <!-- Optional JavaScript ?-->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     {% block javascript %}
     {% endblock %}
-  </body>
+</body>
+
 </html>

@@ -5,21 +5,21 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Confirm Deletion</h4>
+            <h4 class="modal-title">Удаление заметки</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body">
             <div class="row container">
-                <h5>Are you sure you want to delete "{{ note_detail.note_title }}"?</h5>
+                <h5>Вы действительно хотите удалить "{{ note_detail.note_title }}"?</h5>
             </div>
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" data-dismiss="modal" value="Cancel">
-            <button type="button" class="btn btn-danger" name="delete_note"><a href="{% url 'delete_single_note' note_detail.id %}" style="text-decoration: none; color: white">Delete</a></button>
+            <input type="submit" class="btn btn-primary" data-dismiss="modal" value="Отмена">
+            <button type="button" class="btn btn-danger" name="delete_note"><a href="{% url 'delete_single_note' note_detail.id %}" style="text-decoration: none; color: white">Удалить</a></button>
         </div>
 
         </div>

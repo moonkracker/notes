@@ -32,16 +32,16 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-success" type="submit">Login</button>
-                    <div class="social">or sign up with social media</div>
+                    <button class="btn btn-success" type="submit">Вход</button>
+                    <div class="social">или же авторизируйтесь через службы</div>
                     <div class="buttons">
-                        <button class="btn btn-danger mb-2">
+                        <button class="btn btn-danger mb-2" style="width: 130px;">
                             <i class="fab fa-google" aria-hidden="true"></i><a href="{% url 'social:begin' 'google-oauth2' %}">Google</a>
                         </button>
-                        <button class="btn btn-primary mb-2">
+                        <button class="btn btn-primary mb-2" style="width: 130px;">
                             <i class="fa fa-facebook"></i><a href="{% url 'social:begin' 'facebook' %}">Facebook</a>
                         </button>
-                        <button class="btn btn-info mb-2">
+                        <button class="btn btn-info mb-2" style="width: 130px;">
                             <i class="fab fa-vk"></i><a href="{% url 'social:begin' 'vk-oauth2' %}">VKontakte</a>
                         </button>
                     </div>
@@ -49,4 +49,16 @@
         <!--/div-->
     </div>
 </div>
+<script>
+    getRandomInt = max => Math.floor(Math.random() * Math.floor(max)) + 1;
+    
+    getBgGradient = () => {
+        const colors =[
+            "#ffcb52", "#ff7b02","#c165dd", "#5c27fe", "#2afeb7", "#08c792", "#5581f1", "#1153fc",
+            "#facd68", "#fc76b3", "#00f7a7", "#04f5ed", "#1de5e2", "#b588f7", "#ffe324","#ffb533"
+        ];
+        document.body.style.backgroundImage = `linear-gradient(45deg,${colors[this.getRandomInt(colors.length) - 1]}, ${colors[this.getRandomInt(colors.length) - 1]})`;
+    }
+    getBgGradient();
+</script>
 {% endblock %}

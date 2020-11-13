@@ -1,0 +1,66 @@
+{% extends 'registration_base.html' %}
+{% load tags %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+<div class="container content">
+    <div class="row">
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 col-sm-12 col-xs-12 alert alert-danger"
+            style="margin-top: 3%; margin-bottom: 3%">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+        <div style="display: flex; justify-content: center;">
+            <h1 class="title">Вход</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <!-- div class="col-lg-6 col-md-6 offset-md-3" -->
+        <form method="post" class="form" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <div class="row">
+                <div class="form-group col">
+                    <label for="username">{{ form.username.label }}</label>
+                    {{ form.username | add_css:"form-control" }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="password">{{ form.password.label }}</label>
+                    {{ form.password | add_css:"form-control" }}
+                </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Вход</button>
+            <div class="social">или же авторизируйтесь через службы</div>
+            <div class="buttons">
+                <button class="btn btn-danger mb-2" style="width: 130px;">
+                    <i class="fab fa-google" aria-hidden="true"></i><a
+                        href="{% url 'social:begin' 'google-oauth2' %}">Google</a>
+                </button>
+                <button class="btn btn-primary mb-2" style="width: 130px;">
+                    <i class="fa fa-facebook"></i><a href="{% url 'social:begin' 'facebook' %}">Facebook</a>
+                </button>
+                <button class="btn btn-info mb-2" style="width: 130px;">
+                    <i class="fab fa-vk"></i><a href="{% url 'social:begin' 'vk-oauth2' %}">VKontakte</a>
+                </button>
+            </div>
+        </form>
+        <!--/div-->
+    </div>
+</div>
+<script>
+    getRandomInt = max => Math.floor(Math.random() * Math.floor(max)) + 1;
+
+    getBgGradient = () => {
+        const colors = [
+            "#ffcb52", "#ff7b02", "#c165dd", "#5c27fe", "#2afeb7", "#08c792", "#5581f1", "#1153fc",
+            "#facd68", "#fc76b3", "#00f7a7", "#04f5ed", "#1de5e2", "#b588f7", "#ffe324", "#ffb533"
+        ];
+        document.body.style.backgroundImage = `linear-gradient(45deg,${colors[this.getRandomInt(colors.length) - 1]}, ${colors[this.getRandomInt(colors.length) - 1]})`;
+    }
+    getBgGradient();
+</script>
+{% endblock %}

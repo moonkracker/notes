@@ -1,3 +1,15 @@
 {
-    "python.pythonPath": "C:\\Users\\monst\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
+    "python.pythonPath": "C:\\Users\\monst\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+    "files.watcherExclude": {
+        "**/target": true
+    },
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:notesapp}/db.sqlite3",
+            "name": "notesapp"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }

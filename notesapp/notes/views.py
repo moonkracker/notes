@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from .models import Note, AddNoteForm
 from django.contrib import messages
-import json, os
-from datetime import datetime, timedelta 
+import json
+import os
+from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponse
 from io import BytesIO
@@ -36,14 +37,15 @@ def link_callback(uri, rel):
 
     # make sure that file exists
     if not os.path.isfile(path):
-            raise Exception(
-                'media URI must start with %s or %s' % (sUrl, mUrl)
-            )
+        raise Exception(
+            'media URI must start with %s or %s' % (sUrl, mUrl)
+        )
     return path
+
 
 def render_to_pdf(template_src, context_dict={}):
     template = get_template(template_src)
-    html  = template.render(context_dict)
+    html = template.render(context_dict)
     result = BytesIO()
     pdf = pisa.pisaDocument(
         BytesIO(html.encode("windows-1251")), result, link_callback=link_callback)
@@ -51,10 +53,12 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return HttpResponse("Error Rendering PDF", status=400)
 
+
 def generate_pdf(request, slug):
     note = get_object_or_404(Note, slug=slug)
     if note.user != request.user:
-        messages.error(request, 'You are not authenticated to perform this action')
+        messages.error(
+            request, 'You are not authenticated to perform this action')
         return redirect('notes')
     notes = Note.objects.filter(user=request.user).order_by('-updated_at')[:10]
     add_note_form = AddNoteForm()
@@ -74,9 +78,10 @@ def generate_pdf(request, slug):
 
 def home(request):
     if request.user.is_authenticated:
-        notes = Note.objects.filter(user=request.user).order_by('-updated_at')[:10]
-        all_notes = Note.objects.filter(user=request.user).order_by('-updated_at')
-        # paginator = Paginator(all_notes, 15)
+        notes = Note.objects.filter(
+            user=request.user).order_by('-updated_at')[:10]
+        all_notes = Note.objects.filter(
+            user=request.user).order_by('-updated_at')
 
         if request.method == 'POST':
             form = AddNoteForm(request.POST)
@@ -101,11 +106,11 @@ def home(request):
         return render(request, 'index.html')
 
 
-
 def get_note_details(request, slug):
     note = get_object_or_404(Note, slug=slug)
     if note.user != request.user:
-        messages.error(request, 'You are not authenticated to perform this action')
+        messages.error(
+            request, 'You are not authenticated to perform this action')
         return redirect('notes')
 
     notes = Note.objects.filter(user=request.user).order_by('-updated_at')[:10]
@@ -122,11 +127,11 @@ def get_note_details(request, slug):
     return render(request, 'note_details.html', context)
 
 
-
 def edit_note_details(request, pk):
     note = get_object_or_404(Note, pk=pk)
     if note.user != request.user:
-        messages.error(request, 'You are not authenticated to perform this action')
+        messages.error(
+            request, 'You are not authenticated to perform this action')
         return redirect('notes')
     if request.method == 'POST':
         form = AddNoteForm(request.POST, instance=note)
@@ -148,7 +153,8 @@ def edit_note_details(request, pk):
 def confirm_delete_note(request, pk):
     note = get_object_or_404(Note, pk=pk)
     if note.user != request.user:
-        messages.error(request, 'You are not authenticated to perform this action')
+        messages.error(
+            request, 'You are not authenticated to perform this action')
         return redirect('notes')
     # note.delete()
     context = {
@@ -156,24 +162,25 @@ def confirm_delete_note(request, pk):
     }
     return render(request, 'modals/delete_note_modal.html', context)
 
+
 def delete_note(request, pk):
     note = get_object_or_404(Note, pk=pk)
     if note.user != request.user:
-        messages.error(request, 'You are not authenticated to perform this action')
+        messages.error(
+            request, 'You are not authenticated to perform this action')
         return redirect('notes')
     note.delete()
     messages.success(request, 'Note deleted successfully!')
     return redirect('notes')
 
 
-
 def search_note(request):
     if request.is_ajax():
         q = request.GET.get('term')
         notes = Note.objects.filter(
-                note_title__icontains=q,
-                user=request.user
-            )[:10]
+            note_title__icontains=q,
+            user=request.user
+        )[:10]
         results = []
         for note in notes:
             note_json = {}
@@ -191,7 +198,6 @@ def search_note(request):
     return HttpResponse(data)
 
 
-
 def get_shareable_link(request, signed_pk):
     try:
         pk = Note.signer.unsign(signed_pk)
@@ -204,16 +210,15 @@ def get_shareable_link(request, signed_pk):
         raise Http404('No Order matches the given query.')
 
 
-
 def get_all_notes_tags(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
-    # Filter posts by tag name  
+    # Filter posts by tag name
     all_notes = Note.objects.filter(tags=tag, user=request.user)
     notes = Note.objects.filter(user=request.user).order_by('-updated_at')[:10]
     add_note_form = AddNoteForm()
     context = {
-        'tag':tag,
-        'all_notes':all_notes,
+        'tag': tag,
+        'all_notes': all_notes,
         'notes': notes,
         'add_note_form': add_note_form
     }

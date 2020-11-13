@@ -33,14 +33,14 @@
                                     <span><i class="fas fa-ellipsis-h"></i></span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="open-modal dropdown-item" data-url="{% url 'note_details_edit' note_detail.id %}" style="text-decoration: none; color: white" data-toggle="tooltip" title="Edit Note">    
-                                        <span class="btn btn-block btn-primary" style="border-radius: 0;"><i class="far fa-edit"></i> Edit</span>
+                                    <a class="open-modal dropdown-item" data-url="{% url 'note_details_edit' note_detail.id %}" style="text-decoration: none; color: white" data-toggle="tooltip" title="Изменить">    
+                                        <span class="btn btn-block btn-primary" style="border-radius: 0;"><i class="far fa-edit"></i> Изменить</span>
                                     </a>
-                                    <a class="dropdown-item" href="{% url 'note_as_pdf' note_detail.slug %}" style="text-decoration: none; color: white" data-toggle="tooltip" title="Download Note as PDF">    
-                                        <span class="btn btn-block btn-primary" style="border-radius: 0;"><i class="fa fa-download"></i> Download</span>
+                                    <a class="dropdown-item" href="{% url 'note_as_pdf' note_detail.slug %}" style="text-decoration: none; color: white" data-toggle="tooltip" title="Скачать как PDF">    
+                                        <span class="btn btn-block btn-primary" style="border-radius: 0;"><i class="fa fa-download"></i> Скачать</span>
                                     </a>
-                                    <a class="dropdown-item open-delete-modal" data-url="{% url 'confirm_delete_note' note_detail.id %}" data-toggle="tooltip" title="Delete Note">
-                                        <span class="btn btn-danger btn-block" style="border-radius: 0;"><i class="far fa-trash-alt"></i> Delete</span>
+                                    <a class="dropdown-item open-delete-modal" data-url="{% url 'confirm_delete_note' note_detail.id %}" data-toggle="tooltip" title="Удалить">
+                                        <span class="btn btn-danger btn-block" style="border-radius: 0;"><i class="far fa-trash-alt"></i> Удалить</span>
                                     </a>
                                 </div>
                             </li>

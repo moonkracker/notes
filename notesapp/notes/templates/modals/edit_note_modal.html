@@ -3,8 +3,8 @@
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit "{{ form.instance.note_title }}"</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title">Изменить "{{ form.instance.note_title }}"</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -19,8 +19,8 @@
                     {% endfor %}     
                 </div>
                 <div class="modal-footer">
-                        <input class="btn btn-primary" type="submit" value="Save Changes"/>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input class="btn btn-primary" type="submit" value="Сохранить"/>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                 </div>
             </form>
         </div>
@@ -35,8 +35,6 @@ var easyMDE = new EasyMDE({
     spellChecker: false,
     minHeight: '180px'
 });
-// document.getElementById('id_note_content').style.display='block';
-// simplemde.value('Some');
 $('#edit_note').on('shown.bs.modal', function () {
     easyMDE.codemirror.refresh();
 });
